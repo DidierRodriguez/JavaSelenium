@@ -61,7 +61,7 @@ public class ValidacionSeguridad {
 		String CorrectNumber = driver.findElement(By.xpath("//*[@id=\"FRM_D07878C4\"]/div/div/span[2]")).getText();
 		 //Assert.assertEquals(CorrectNumber, "999");
 		SoftAssert soft = new SoftAssert();
-		soft.assertEquals(CorrectNumber, "1-20 of 999");
+		soft.assertEquals(CorrectNumber, "1-20 of 70");
 		 
 		 soft.assertAll();
   }
