@@ -1,5 +1,7 @@
 package com.opensource.admin.qa;
 
+import java.io.FileNotFoundException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -20,15 +22,22 @@ public class TC001_Admin_SearchEmployee_POM {
 	String username, password;
 
   @BeforeTest
-  public void beforeTest() {
+  public void beforeTest() throws FileNotFoundException {
 	  
 	  seleniumWrapper=new SeleniumWrapper(driver);
 	  driver = seleniumWrapper.chromeDriverConnection();
 	  login = new Login(driver);
 	  userManagment = new UserManagment(driver);
 	  
-	  this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
-	  this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
+	  //Autenticacion con JSON
+	  
+	  this.username = seleniumWrapper.getJSONvalue(this.getClass().getSimpleName(), "username");
+	  this.password = seleniumWrapper.getJSONvalue(this.getClass().getSimpleName(), "password");
+
+	  
+//	  Autenticación con Excel Manejo de datos
+//	  this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
+//	  this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
 
 	  
 //	  Hardcode de datos -nunca hacer esto

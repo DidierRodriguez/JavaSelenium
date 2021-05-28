@@ -138,72 +138,93 @@ public class SeleniumWrapper {
 			Assert.fail("Not able to Close Browser");
 		}
 	}
-	
+
 	/*
 	 * Get Data from JSON file (1 node)
+	 * 
 	 * @param jsonfile, jsonObjName, jsoKey
+	 * 
 	 * @return jsonValue
+	 * 
 	 * @throws FilenotfoundException
 	 */
-	
-	public String getJSONvalue(String jsonFile, String jsonObjName, String jsonkey) throws FileNotFoundException{
-		
+
+//	public String getJSONvalue(String jsonFile, String jsonObjName, String jsonkey) throws FileNotFoundException{
+//		
+//		try {
+//			
+//			// JSON Data
+//			InputStream inputStream = new FileInputStream(GlobalVariables.PATH_JSON_DATA + jsonFile + ".json");
+//			JSONObject jsonObject = new JSONObject(new JSONTokener(inputStream));
+//			
+//			// Get Data
+//			String jsonValue = (String) jsonObject.getJSONObject(jsonObjName).get(jsonkey);
+//			return jsonValue;
+//			
+//		} catch (FileNotFoundException e) {
+//			Assert.fail("JSON file is not found");
+//			return null;
+//		}
+//		
+//	}
+//	
+
+	// GET Value from JSON este es el que se usa.
+
+	public String getJSONvalue(String jsonFileObj, String jsonkey) throws FileNotFoundException {
+
 		try {
-			
+
 			// JSON Data
-			InputStream inputStream = new FileInputStream(GlobalVariables.PATH_JSON_DATA + jsonFile + ".json");
+			InputStream inputStream = new FileInputStream(GlobalVariables.PATH_JSON_DATA + jsonFileObj + ".json");
 			JSONObject jsonObject = new JSONObject(new JSONTokener(inputStream));
-			
+
 			// Get Data
-			String jsonValue = (String) jsonObject.getJSONObject(jsonObjName).get(jsonkey);
+			String jsonValue = (String) jsonObject.getJSONObject(jsonFileObj).get(jsonkey);
 			return jsonValue;
-			
+
 		} catch (FileNotFoundException e) {
 			Assert.fail("JSON file is not found");
 			return null;
 		}
-		
+
 	}
-		
-		
-		// Get value from excel
-		
-		public String getCellData(String excelName, int row, int column) {
-			
-			try {
-				
-				// Reading data
-				FileInputStream fis = new FileInputStream(GlobalVariables.PATH_EXCEL_DATA+excelName+".xlsx");
-				// Construct an XSSFWorkbook object
-				@SuppressWarnings("resource")
-				Workbook wb = new XSSFWorkbook(fis);
-				Sheet sheet = wb.getSheetAt(0);
-				Row rowObj = sheet.getRow(row);
-				Cell cell = rowObj.getCell(column);
-				String value = cell.getStringCellValue();
-				return value;
-				
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				return null;
-			}catch (IOException e1) {
+
+	// Get value from excel
+
+	public String getCellData(String excelName, int row, int column) {
+
+		try {
+
+			// Reading data
+			FileInputStream fis = new FileInputStream(GlobalVariables.PATH_EXCEL_DATA + excelName + ".xlsx");
+			// Construct an XSSFWorkbook object
+			@SuppressWarnings("resource")
+			Workbook wb = new XSSFWorkbook(fis);
+			Sheet sheet = wb.getSheetAt(0);
+			Row rowObj = sheet.getRow(row);
+			Cell cell = rowObj.getCell(column);
+			String value = cell.getStringCellValue();
+			return value;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e1) {
 			e1.printStackTrace();
 			return null;
 		}
-			
-		
+
 	}
-		
-		
-		// metodo get text form data table
-		
-		public String getValueFromTable(String row, String column) {
-			try {
-				return driver.findElement(By.xpath("//tbody/tr["+row+"]/td["+column+"]")).getText();
-			} catch (NoSuchElementException e) {
-				return null;
-			}
+
+	// metodo get text form data table
+
+	public String getValueFromTable(String row, String column) {
+		try {
+			return driver.findElement(By.xpath("//tbody/tr[" + row + "]/td[" + column + "]")).getText();
+		} catch (NoSuchElementException e) {
+			return null;
 		}
-	
+	}
 
 }
