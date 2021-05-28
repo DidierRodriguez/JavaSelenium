@@ -173,7 +173,7 @@ public class SeleniumWrapper {
 			try {
 				
 				// Reading data
-				FileInputStream fis = new FileInputStream(GlobalVariables.PATH_EXCEL_DATA+excelName+" .xlsx");
+				FileInputStream fis = new FileInputStream(GlobalVariables.PATH_EXCEL_DATA+excelName+".xlsx");
 				// Construct an XSSFWorkbook object
 				@SuppressWarnings("resource")
 				Workbook wb = new XSSFWorkbook(fis);

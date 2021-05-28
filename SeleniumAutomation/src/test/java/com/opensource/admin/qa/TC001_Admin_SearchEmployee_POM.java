@@ -27,10 +27,15 @@ public class TC001_Admin_SearchEmployee_POM {
 	  login = new Login(driver);
 	  userManagment = new UserManagment(driver);
 	  
-	  //Hardcode de datos -nunca hacer esto
-	  username = "Admin";
-	  password = "admin123";
+	  this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
+	  this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
+
 	  
+//	  Hardcode de datos -nunca hacer esto
+//	  username = "Admin";
+//	  password = "admin123";
+	  
+//	  
   }
 
   
