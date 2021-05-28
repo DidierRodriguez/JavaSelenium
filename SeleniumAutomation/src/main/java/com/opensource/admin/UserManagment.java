@@ -53,12 +53,18 @@ public class UserManagment extends SeleniumWrapper {
 	}
 
 	/*
-	 * Validate value from search table
+	 * Validate value from search table metodo sobrecargado 
 	 */
 
 	public void validateFormSearchTable(String expectedValue) {
 		reporterLog("verify value in search table");
 		String actualValue = getText(tbl_firstRowSearch);
+		assertEquals(actualValue, expectedValue);
+	}
+	
+	public void validateFormSearchTable(String row, String column, String expectedValue) {
+		reporterLog("verify value in search table");
+		String actualValue = getValueFromTable(row, column);
 		assertEquals(actualValue, expectedValue);
 	}
 }

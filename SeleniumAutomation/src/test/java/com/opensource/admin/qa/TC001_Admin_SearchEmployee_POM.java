@@ -50,10 +50,10 @@ public class TC001_Admin_SearchEmployee_POM {
 	  userManagment.clickAdmin();
 	  
 	  // Step 5 and 6
-	  userManagment.searchUser("Admin", true);
+	  userManagment.searchUser(username, true);
 	  
 	  // Step 7
-	  userManagment.validateFormSearchTable("Admin");
+	  userManagment.validateFormSearchTable("1", "2", username);
 	  
 	  // Step 8
 	  login.logoutOrange();

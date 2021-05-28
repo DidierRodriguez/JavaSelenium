@@ -193,6 +193,17 @@ public class SeleniumWrapper {
 			
 		
 	}
+		
+		
+		// metodo get text form data table
+		
+		public String getValueFromTable(String row, String column) {
+			try {
+				return driver.findElement(By.xpath("//tbody/tr["+row+"]/td["+column+"]")).getText();
+			} catch (NoSuchElementException e) {
+				return null;
+			}
+		}
 	
 
 }
