@@ -1,10 +1,13 @@
 package com.opensource.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,6 +28,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
 public class SeleniumWrapper {
 
@@ -224,6 +230,16 @@ public class SeleniumWrapper {
 			return driver.findElement(By.xpath("//tbody/tr[" + row + "]/td[" + column + "]")).getText();
 		} catch (NoSuchElementException e) {
 			return null;
+		}
+	}
+	
+	
+	public void takeScreenshot (String fileName) {
+		try {
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "PNG", new File(GlobalVariables.PATH_SCREENSHOTS + fileName + ".png"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
