@@ -24,6 +24,7 @@ public class UserManagment extends SeleniumWrapper {
 
 	public void validateLogged() {
 		Reporter.log("Validate that you have logged in sucessfully");
+		takeScreenshot("Logged succesfully");
 		waitForElementPresent(link_admin, 10);
 
 	}
@@ -35,6 +36,7 @@ public class UserManagment extends SeleniumWrapper {
 	public void clickAdmin() {
 		reporterLog("Click Admin - Go to the admin page");
 		click(link_admin, "Admin");
+		takeScreenshot("Click Admin");
 		implicitlyWait(5);
 	}
 
@@ -45,6 +47,7 @@ public class UserManagment extends SeleniumWrapper {
 	public void searchUser(String user, boolean ClickSearch) {
 		Reporter.log("Search username in field");
 		type(txt_search, user, "Search field");
+		takeScreenshot("Search User");
 		if (ClickSearch) {
 			click(btn_search, "Button Search");
 		}

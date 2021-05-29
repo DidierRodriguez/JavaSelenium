@@ -110,6 +110,7 @@ public class SeleniumWrapper {
 			WebDriverWait wait = new WebDriverWait(driver, timeout);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		} catch (TimeoutException e) {
+			takeScreenshot("Object "+locator+" Not found");
 
 		}
 	}
